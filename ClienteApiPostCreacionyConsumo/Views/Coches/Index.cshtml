@@ -1,0 +1,81 @@
+﻿@model List<String>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    List<Coche> seleccion = ViewBag.Seleccion;
+    List<Coche> todos = ViewBag.Todos;
+}
+<h2>Index</h2>
+
+<form method="post">
+    <select class="form-control" name="marca">
+        @foreach (String marca in Model)
+        {
+            <option value="@marca">@marca</option>
+        }
+    </select>
+    <button type="submit" class="btn-success" name="accion" value="buscar">Buscar</button>
+    <br />
+    <button type="submit" class="btn-success" name="accion" value="todos">Todos los deportivos</button>
+</form>
+
+@if (ViewBag.Seleccion != null)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>MARCA</th>
+                <th>ORIGEN</th>
+                <th>MODELO</th>
+                <th>CV</th>
+                <th>VELOCIDAD MÁXIMA</th>
+                <th>ACELERACION</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Coche coche in seleccion)
+            {
+                <tr class="active">
+                    <th>@coche.Marca</th>
+                    <th>@coche.Origen</th>
+                    <th>@coche.Modelo</th>
+                    <th>@coche.CV</th>
+                    <th>@coche.VelocidadMaxima</th>
+                    <th>@coche.Aceleracion</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<br />
+@if (ViewBag.Todos != null)
+{
+    <table class="table table table-bordered">
+        <thead>
+            <tr>
+                <th>MARCA</th>
+                <th>ORIGEN</th>
+                <th>MODELO</th>
+                <th>CV</th>
+                <th>VELOCIDAD MÁXIMA</th>
+                <th>ACELERACION</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Coche coche in todos)
+            {
+                <tr class="active">
+                    <th>@coche.Marca</th>
+                    <th>@coche.Origen</th>
+                    <th>@coche.Modelo</th>
+                    <th>@coche.CV</th>
+                    <th>@coche.VelocidadMaxima</th>
+                    <th>@coche.Aceleracion</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
